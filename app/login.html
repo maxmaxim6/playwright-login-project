@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+
+    <label>
+      Email:
+      <input data-testid="email-input" id="email" type="text" />
+    </label>
+
+    <br /><br />
+
+    <label>
+      Password:
+      <input data-testid="password-input" id="password" type="password" />
+    </label>
+
+    <br /><br />
+
+    <button data-testid="login-btn" id="loginBtn">Login</button>
+
+    <p data-testid="error-text" id="error" style="color: red;"></p>
+
+    <hr />
+
+    <div data-testid="dashboard" id="dashboard" style="display:none;">
+      <h2>Dashboard</h2>
+      <p data-testid="welcome-text" id="welcome"></p>
+      <button data-testid="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>
