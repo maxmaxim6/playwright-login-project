@@ -1,12 +1,19 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from './fixtures.js';
+import { users } from '../test-data/users.js';
 
-test("login success shows dashboard", async ({ page }) => {
-  await page.goto("file:///C:/Users/maxma/OneDrive/Desktop/playwright-login-project/app/login.html");
+test.describe('Login Smoke Tests', () => {
+  test('login page loads with required elements', async ({ loginPage }) => {
+    await expect(loginPage.emailInput).toBeVisible();
+    await expect(loginPage.passwordInput).toBeVisible();
+    await expect(loginPage.loginButton).toBeVisible();
+  });
 
-  await page.fill('[data-testid="email-input"]', "max@test.com");
-  await page.fill('[data-testid="password-input"]', "1234");
-  await page.click('[data-testid="login-btn"]');
+  test('successful login', async ({ loginPage }) => {
+    await loginPage.login(users.validUser.email, users.validUser.password);
 
-  await expect(page.locator('[data-testid="dashboard"]')).toBeVisible();
-  await expect(page.locator('[data-testid="welcome-text"]')).toHaveText("Welcome, max@test.com!");
+    await expect(loginPage.dashboard).toBeVisible();
+    await expect(loginPage.welcomeText).toHaveText(
+      `Welcome, ${users.validUser.email}!`
+    );
+  });
 });

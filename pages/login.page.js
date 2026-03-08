@@ -12,15 +12,25 @@ export class LoginPage {
   }
 
   async goto() {
-    await this.page.goto(
-      'file:///C:/Users/maxma/OneDrive/Desktop/JS/app/login.html'
-    );
+    await this.page.goto('/app/login.html');
+  }
+
+  async fillEmail(email) {
+    await this.emailInput.fill(email);
+  }
+
+  async fillPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  async clickLogin() {
+    await this.loginButton.click();
   }
 
   async login(email, password) {
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+    await this.fillEmail(email);
+    await this.fillPassword(password);
+    await this.clickLogin();
   }
 
   async logout() {
