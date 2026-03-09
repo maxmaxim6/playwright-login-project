@@ -47,6 +47,8 @@ playwright-login-project/
 ├── 🛠️ playwright.config.js      # Playwright global settings
 ├── 🏗️ Jenkinsfile              # Jenkins automation pipeline
 └── 📜 README.md                # Documentation
+---
+
 🚀 How to Run the Project
 Option 1: Using Docker (Recommended)
 Ensures the environment is identical to the CI pipeline:
