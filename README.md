@@ -1,205 +1,213 @@
-Playwright Login Automation Project
-Description
+# Playwright Login Automation Project
 
-This project demonstrates End-to-End (E2E) test automation using Playwright.
+## Description
 
-It includes a simple Login web application and automated tests written in JavaScript, following best practices such as:
+This project demonstrates end-to-end (E2E) test automation using **Playwright**.
+It includes a simple login web application and automated tests written in **JavaScript**, following **Page Object Model (POM)** and **Playwright Fixtures** best practices.
 
-Page Object Model (POM)
+The goal of this project is to showcase practical automation skills suitable for a **Junior QA Automation Engineer** role.
 
-Playwright Fixtures
+---
 
-Test Data Separation
+# Tech Stack
 
-CI Integration
+* JavaScript
+* Playwright
+* HTML / Vanilla JS
+* Node.js
+* Docker
+* GitHub Actions
+* Jenkins (pipeline example)
 
-Docker containerization
+---
 
-The goal of this project is to showcase practical automation skills suitable for a Junior QA Automation Engineer role.
+# Features Covered
 
-Tech Stack
-Languages
+This project demonstrates several important automation concepts:
 
-JavaScript
+* End-to-End UI testing
+* Page Object Model (POM)
+* Playwright Fixtures
+* Test Data Management
+* Smoke Tests
+* Negative Tests
+* Validation Tests
+* Session Tests (Login / Logout)
+* HTML & JUnit Test Reports
+* Local Web Server for test environment
+* Dockerized test execution environment
+* CI pipeline example (GitHub Actions)
 
-Frameworks
+---
 
-Playwright
+# Project Structure
 
-DevOps & CI
-
-Docker
-
-GitHub Actions
-
-Jenkins (Pipeline Example)
-
-Reporting
-
-Playwright HTML Report
-
-JUnit Report
-
-Frontend (Test Application)
-
-HTML
-
-Vanilla JavaScript
-
-Project Structure
-playwright-login-project
+```
+playwright-login-project/
 │
-├── app
-│   ├── login.html
-│   └── login.js
+├─ app
+│   ├─ login.html
+│   └─ login.js
 │
-├── pages
-│   └── login.page.js
+├─ pages
+│   └─ login.page.js
 │
-├── tests
-│   ├── fixtures.js
-│   ├── login.smoke.spec.js
-│   ├── login.negative.spec.js
-│   ├── login.validation.spec.js
-│   └── login.session.spec.js
+├─ tests
+│   ├─ fixtures.js
+│   ├─ login.smoke.spec.js
+│   ├─ login.negative.spec.js
+│   ├─ login.validation.spec.js
+│   └─ login.session.spec.js
 │
-├── test-data
-│   └── users.js
+├─ test-data
+│   └─ users.js
 │
-├── .github/workflows
-│   └── playwright.yml
+├─ .github/workflows
+│   └─ playwright.yml
 │
-├── Dockerfile
-├── .dockerignore
+├─ Dockerfile
+├─ .dockerignore
 │
-├── playwright.config.js
-├── Jenkinsfile
-├── package.json
-├── package-lock.json
-└── README.md
-Test Scenarios
-Smoke Tests
+├─ playwright.config.js
+├─ Jenkinsfile
+├─ package.json
+├─ package-lock.json
+└─ README.md
+```
 
-Login page loads successfully
+---
 
-Required UI elements are visible
+# Test Scenarios
 
-Successful login
+### Smoke Tests
 
-Negative Tests
+* Login page loads successfully
+* Required UI elements are visible
+* Successful login
 
-Login with wrong password
+### Negative Tests
 
-Login with unexpected email
+* Login with wrong password
+* Login with unexpected email
 
-Validation Tests
+### Validation Tests
 
-Empty email
+* Empty email
+* Invalid email format
+* Empty password
+* Both fields empty
+* Email trimming with spaces
 
-Invalid email format
+### Session Tests
 
-Empty password
+* Login and logout flow
 
-Both fields empty
+---
 
-Email trimming with spaces
-
-Session Tests
-
-Login
-
-Logout
-
-Session validation
-
-Run the Project Locally
+# How to Run the Project
 
 Install dependencies:
 
+```
 npm install
+```
 
 Install Playwright browsers:
 
+```
 npx playwright install
+```
 
 Run tests:
 
+```
 npx playwright test
+```
 
-Open the test report:
+Open the HTML report:
 
+```
 npx playwright show-report
-Run Tests Using Docker
+```
 
-The project includes Docker support so the automation tests can run in an isolated environment.
+---
 
-Build the Docker image
+# Run Tests with Docker
+
+Build the Docker image:
+
+```
 docker build -t playwright-tests .
-Run the tests inside Docker
+```
+
+Run the tests inside the container:
+
+```
 docker run playwright-tests
+```
 
-Docker will automatically run the Playwright tests inside the container.
+Running the tests with Docker ensures the project runs in a **consistent and isolated environment**, independent of the local machine configuration.
 
-Automation Framework Design
-Page Object Model (POM)
+---
 
-All UI actions are centralized in page objects:
+# Automation Design Highlights
 
+### Page Object Model
+
+All UI interactions are handled in:
+
+```
 pages/login.page.js
+```
 
-This improves maintainability, readability, and code reuse.
+This keeps test logic clean and maintainable.
 
-Fixtures
+---
 
-A custom Playwright fixture provides a ready-to-use loginPage object for tests.
+### Fixtures
 
+A custom Playwright fixture is used to provide a ready-to-use `loginPage` object for each test.
+
+```
 tests/fixtures.js
+```
 
-This removes duplicated setup logic.
+---
 
-Test Data Management
+### Test Data
 
 Test data is separated from test logic.
 
+```
 test-data/users.js
+```
 
-This approach improves maintainability and scalability.
+This allows easier maintenance and scalability.
 
-Continuous Integration
-GitHub Actions
+---
 
-Tests automatically run on push using:
+# CI Integration
 
+The project includes a GitHub Actions workflow that automatically runs Playwright tests on push.
+
+```
 .github/workflows/playwright.yml
+```
 
-This simulates a real CI environment.
+---
 
-Jenkins Pipeline
+# Example Report
 
-The project also includes a Jenkins pipeline example:
-
-Jenkinsfile
-
-This demonstrates CI/CD integration with automation frameworks.
-
-Test Reports
-
-Playwright generates a detailed HTML report after test execution.
+Playwright generates a rich HTML report for test execution results.
 
 Run:
 
+```
 npx playwright show-report
+```
 
-The report includes:
+---
 
-Test results
+# Author
 
-Execution time
-
-Failed test screenshots
-
-Error logs
-
-Author
-
-Automation project created to demonstrate Playwright automation framework design, CI/CD integration, and Dockerized test execution for QA Automation roles.
+Automation project created to demonstrate **Playwright automation framework design, Dockerized test execution, and CI integration best practices**.
