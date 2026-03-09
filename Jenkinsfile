@@ -1,45 +1,44 @@
-
 pipeline {
-  agent any
-  options { timestamps() }
-
-  stages {
-    stage('Checkout') { steps { checkout scm } }
-
-    stage('Install deps') { steps { bat 'npm ci' } }
-
-    stage('Install browsers') { steps { bat 'npx playwright install' } }
-
-    stage('Run tests') { steps { bat 'npx playwright test' } }
-  }
-
-  post {
-    always {
-      junit allowEmptyResults: true, testResults: 'test-results/results.xml'
-      archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:v1.58.2-jammy'
+        }
     }
-  }
-}
 
-pipeline {
-  agent any
-  options { timestamps() }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
 
-  stages {
-    stage('Checkout') { steps { checkout scm } }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
 
-    stage('Install deps') { steps { bat 'npm ci' } }
-
-    stage('Install browsers') { steps { bat 'npx playwright install' } }
-
-    stage('Run tests') { steps { bat 'npx playwright test' } }
-  }
-
-  post {
-    always {
-      junit allowEmptyResults: true, testResults: 'test-results/results.xml'
-      archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+        stage('Run Automated Tests') {
+            steps {
+                sh 'npx playwright test'
+            }
+        }
     }
-  }
+
+    post {
+        always {
+            archiveArtifacts artifacts: 'playwright-report/**/*', allowEmptyArchive: true
+            
+            publishHTML([
+                allowMissing: false, 
+                alwaysLinkToLastBuild: true, 
+                keepAll: true, 
+                reportDir: 'playwright-report', 
+                reportFiles: 'index.html', 
+                reportName: 'Playwright HTML Report'
+            ])
+            
+            junit 'test-results/results.xml'
+        }
+    }
 }
-168331d (Upgrade Playwright project: add fixtures, test data, validation tests and session tests)
