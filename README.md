@@ -1,189 +1,94 @@
 # Playwright Login Automation Project
 
 ## Description
+This project demonstrates advanced end-to-end (E2E) test automation using **Playwright**.
+It includes a login web application and automated tests written in **JavaScript**, following industry best practices such as the **Page Object Model (POM)**, **Custom Fixtures**, and **Containerization**.
 
-This project demonstrates end-to-end (E2E) test automation using **Playwright**.
-It includes a simple login web application and automated tests written in **JavaScript**, following **Page Object Model (POM)** and **Playwright Fixtures** best practices.
-
-The goal of this project is to showcase practical automation skills suitable for a **Junior QA Automation Engineer** role.
+The goal of this project is to showcase professional automation engineering skills, including CI/CD integration and environment isolation.
 
 ---
 
 # Tech Stack
-
-* JavaScript
-* Playwright
-* HTML / Vanilla JS
-* Node.js
-* GitHub Actions
-* Jenkins (pipeline example)
+* **Language:** JavaScript (Node.js)
+* **Framework:** Playwright
+* **DevOps & CI/CD:** Docker, GitHub Actions, Jenkins
+* **Reporting:** HTML & JUnit Reports
+* **Frontend:** HTML / Vanilla JS (Local Test App)
 
 ---
 
 # Features Covered
-
-This project demonstrates several important automation concepts:
-
-* End-to-End UI testing
-* Page Object Model (POM)
-* Playwright Fixtures
-* Test Data Management
-* Smoke Tests
-* Negative Tests
-* Validation Tests
-* Session Tests (Login / Logout)
-* HTML & JUnit Test Reports
-* Local Web Server for test environment
-* CI pipeline example (GitHub Actions)
+* **End-to-End UI Testing:** Full user flow validation.
+* **Page Object Model (POM):** Decoupling test logic from UI locators for high maintainability.
+* **Playwright Fixtures:** Optimized setup/teardown using custom fixtures.
+* **Data-Driven Testing:** Separation of test data from execution logic.
+* **Test Suite Variety:** Smoke, Negative, Validation, and Session tests.
+* **Containerization:** Fully Dockerized environment for consistent execution.
+* **CI/CD Pipelines:** Automated test execution on every push via GitHub Actions and Jenkins.
 
 ---
 
 # Project Structure
-
-```
 playwright-login-project/
 │
-├─ app
-│   ├─ login.html
-│   └─ login.js
-│
-├─ pages
-│   └─ login.page.js
-│
-├─ tests
-│   ├─ fixtures.js
-│   ├─ login.smoke.spec.js
-│   ├─ login.negative.spec.js
-│   ├─ login.validation.spec.js
-│   └─ login.session.spec.js
-│
-├─ test-data
-│   └─ users.js
-│
-├─ .github/workflows
-│   └─ playwright.yml
-│
-├─ playwright.config.js
-├─ Jenkinsfile
-├─ package.json
-└─ README.md
-```
+├─ app/                  # Web application under test
+├─ pages/                # Page Object Model classes
+├─ tests/                # Test specifications & custom fixtures
+├─ test-data/            # Externalized test data
+├─ .github/workflows/    # GitHub Actions CI configuration
+├─ Dockerfile            # Docker environment configuration
+├─ .dockerignore         # Docker build optimization
+├─ playwright.config.js  # Playwright global settings
+├─ Jenkinsfile           # Jenkins CI/CD pipeline
+├─ package.json          # Dependencies and scripts
+└─ README.md             # Project documentation
 
----
-
-# Test Scenarios
-
-### Smoke Tests
-
-* Login page loads successfully
-* Required UI elements are visible
-* Successful login
-
-### Negative Tests
-
-* Login with wrong password
-* Login with unexpected email
-
-### Validation Tests
-
-* Empty email
-* Invalid email format
-* Empty password
-* Both fields empty
-* Email trimming with spaces
-
-### Session Tests
-
-* Login and logout flow
 
 ---
 
 # How to Run the Project
 
-Install dependencies:
+### Option 1: Using Docker (Recommended)
+This is the most reliable way to run the tests in a containerized environment:
 
-```
+1. **Build the Image:**
+   ```bash
+   docker build -t playwright-tests .
+Run the Tests:
+
+Bash
+docker run --rm playwright-tests
+Option 2: Local Execution
+Install Dependencies:
+
+Bash
 npm install
-```
+Install Browsers:
 
-Install Playwright browsers:
-
-```
+Bash
 npx playwright install
-```
+Run Tests:
 
-Run tests:
-
-```
+Bash
 npx playwright test
-```
+View Report:
 
-Open the HTML report:
-
-```
+Bash
 npx playwright show-report
-```
+CI/CD Integration
+GitHub Actions
+The project is integrated with GitHub Actions. Every push or pull_request to the main branch triggers the automated test suite inside a Docker container. You can view the latest runs in the Actions tab.
 
----
+Jenkins
+A Jenkinsfile is included to support Jenkins pipelines, ensuring the project is ready for enterprise-level automation servers.
 
-# Automation Design Highlights
+Automation Design Highlights
+Maintainability: Using POM ensures that UI changes only require updates in one place.
 
-### Page Object Model
+Stability: Running tests in Docker eliminates the "it works on my machine" problem.
 
-All UI interactions are handled in:
+Scalability: The architecture allows for easy addition of new pages, tests, and environments.
 
-```
-pages/login.page.js
-```
-
-This keeps test logic clean and maintainable.
-
----
-
-### Fixtures
-
-A custom Playwright fixture is used to provide a ready-to-use `loginPage` object for each test.
-
-```
-tests/fixtures.js
-```
-
----
-
-### Test Data
-
-Test data is separated from test logic.
-
-```
-test-data/users.js
-```
-
-This allows easier maintenance and scalability.
-
----
-
-# CI Integration
-
-The project includes a GitHub Actions workflow that automatically runs Playwright tests on push.
-
-```
-.github/workflows/playwright.yml
-```
-
----
-
-# Example Report
-
-Playwright generates a rich HTML report for test execution results.
-
-Run:
-
-```
-npx playwright show-report
-```
-
----
-
-# Author
-
-Automation project created to demonstrate **Playwright automation framework design and best practices**.
+Author
+Software Engineer & Automation Specialist
+Focused on building robust, scalable, and optimized automation frameworks.
