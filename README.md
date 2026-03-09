@@ -1,14 +1,14 @@
 # Playwright Login Automation Project
 
-## Description
-This project demonstrates advanced end-to-end (E2E) test automation using **Playwright**.
-It includes a login web application and automated tests written in **JavaScript**, following industry best practices such as the **Page Object Model (POM)**, **Custom Fixtures**, and **Containerization**.
+## 📝 Description
+This project demonstrates advanced end-to-end (E2E) test automation using **Playwright**. 
+It includes a built-in login web application and a suite of automated tests written in **JavaScript**, following industry best practices like the **Page Object Model (POM)**, **Custom Fixtures**, and **Containerization**.
 
-The goal of this project is to showcase professional automation engineering skills, including CI/CD integration and environment isolation.
+The goal is to showcase a production-ready automation framework with full CI/CD integration.
 
 ---
 
-# Tech Stack
+## 🛠 Tech Stack
 * **Language:** JavaScript (Node.js)
 * **Framework:** Playwright
 * **DevOps & CI/CD:** Docker, GitHub Actions, Jenkins
@@ -17,78 +17,79 @@ The goal of this project is to showcase professional automation engineering skil
 
 ---
 
-# Features Covered
-* **End-to-End UI Testing:** Full user flow validation.
-* **Page Object Model (POM):** Decoupling test logic from UI locators for high maintainability.
-* **Playwright Fixtures:** Optimized setup/teardown using custom fixtures.
-* **Data-Driven Testing:** Separation of test data from execution logic.
-* **Test Suite Variety:** Smoke, Negative, Validation, and Session tests.
-* **Containerization:** Fully Dockerized environment for consistent execution.
-* **CI/CD Pipelines:** Automated test execution on every push via GitHub Actions and Jenkins.
+## 📂 Project Structure & File Map
+Below is the detailed structure of the project, including all key automation files:
 
----
-
-# Project Structure
+```text
 playwright-login-project/
 │
-├─ app/                  # Web application under test
-├─ pages/                # Page Object Model classes
-├─ tests/                # Test specifications & custom fixtures
-├─ test-data/            # Externalized test data
-├─ .github/workflows/    # GitHub Actions CI configuration
-├─ Dockerfile            # Docker environment configuration
-├─ .dockerignore         # Docker build optimization
-├─ playwright.config.js  # Playwright global settings
-├─ Jenkinsfile           # Jenkins CI/CD pipeline
-├─ package.json          # Dependencies and scripts
-└─ README.md             # Project documentation
+├── app/                        # Web application under test
+│   ├── login.html              # Login page frontend
+│   └── login.js                # Login logic
+│
+├── pages/                      # Page Object Model (POM)
+│   └── login.page.js           # Locators and actions for Login page
+│
+├── tests/                      # Test Suite
+│   ├── fixtures.js             # Custom Playwright fixtures
+│   ├── login.smoke.spec.js     # Critical path tests
+│   ├── login.negative.spec.js  # Error handling tests
+│   ├── login.validation.spec.js # Field validation tests
+│   └── login.session.spec.js   # Login/Logout flow tests
+│
+├── test-data/                  # Data-Driven Testing
+│   └── users.js                # Test user credentials
+│
+├── .github/workflows/          # CI/CD Configuration
+│   └── playwright.yml          # GitHub Actions Dockerized pipeline
+│
+├── Dockerfile                  # Environment isolation config
+├── .dockerignore               # Docker build optimization
+├── playwright.config.js        # Playwright global settings
+├── Jenkinsfile                 # Jenkins automation pipeline
+├── package.json                # Project dependencies
+└── README.md                   # Documentation
+🚀 How to Run the Project
+Option 1: Using Docker (Recommended)
+Ensures the environment is identical to the CI pipeline:
 
+Build the Image:
 
----
-
-# How to Run the Project
-
-### Option 1: Using Docker (Recommended)
-This is the most reliable way to run the tests in a containerized environment:
-
-1. **Build the Image:**
-   ```bash
-   docker build -t playwright-tests .
+Bash
+docker build -t playwright-tests .
 Run the Tests:
 
 Bash
 docker run --rm playwright-tests
 Option 2: Local Execution
-Install Dependencies:
+Install Dependencies: npm install
 
-Bash
-npm install
-Install Browsers:
+Install Browsers: npx playwright install
 
-Bash
-npx playwright install
-Run Tests:
+Run Tests: npx playwright test
 
-Bash
-npx playwright test
-View Report:
+View Report: npx playwright show-report
 
-Bash
-npx playwright show-report
-CI/CD Integration
+🔄 CI/CD Integration
 GitHub Actions
-The project is integrated with GitHub Actions. Every push or pull_request to the main branch triggers the automated test suite inside a Docker container. You can view the latest runs in the Actions tab.
+Fully integrated with GitHub Actions. Every push or pull_request triggers a Dockerized test run.
+Status: Check the "Actions" tab for live execution logs.
 
 Jenkins
-A Jenkinsfile is included to support Jenkins pipelines, ensuring the project is ready for enterprise-level automation servers.
+Includes a pre-configured Jenkinsfile for enterprise-level automation servers, supporting pipeline-as-code.
 
-Automation Design Highlights
-Maintainability: Using POM ensures that UI changes only require updates in one place.
+💎 Automation Highlights
+1. Maintainability (POM)
+Using the Page Object Model ensures that UI changes (like a button ID update) only need to be fixed in one file (pages/), keeping the tests clean and robust.
 
-Stability: Running tests in Docker eliminates the "it works on my machine" problem.
+2. Stability (Docker)
+Running tests inside Docker eliminates "It works on my machine" issues by providing a consistent Linux environment with all dependencies pre-installed.
 
-Scalability: The architecture allows for easy addition of new pages, tests, and environments.
+3. Scalability (Fixtures & Data)
+Fixtures: Custom setup/teardown logic reduces code duplication.
 
-Author
+External Data: Test data is separated from logic, allowing for easy expansion.
+
+👤 Author
 Software Engineer & Automation Specialist
-Focused on building robust, scalable, and optimized automation frameworks.
+Specializing in building robust, scalable, and optimized automation frameworks.
